@@ -9,5 +9,17 @@ func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/vn_scene.tscn")
 
 
+func _on_story_map_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/story_map.tscn")
+
+
+func _on_ninpedia_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/ninpedia.tscn")
+
+
+func _on_cards_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/cards_collection.tscn")
+
+
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
