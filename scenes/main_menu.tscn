@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1, 0.1, 0.18, 1)
+color = Color(0.08, 0.09, 0.14, 1)
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -26,13 +26,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
-offset_top = 120.0
+offset_top = 80.0
 offset_right = 300.0
-offset_bottom = 200.0
+offset_bottom = 150.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.91, 0.27, 0.38, 1)
-theme_override_font_sizes/font_size = 48
-text = "The World of Shinobi"
+theme_override_colors/font_color = Color(0.95, 0.75, 0.2, 1)
+theme_override_font_sizes/font_size = 42
+text = "Путь Шиноби"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -42,13 +42,13 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = 200.0
+offset_top = 150.0
 offset_right = 200.0
-offset_bottom = 240.0
+offset_bottom = 185.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
-theme_override_font_sizes/font_size = 20
-text = "Prologue — MVP"
+theme_override_font_sizes/font_size = 18
+text = "Визуальная новелла"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -58,25 +58,46 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = 40.0
-offset_right = 120.0
-offset_bottom = 160.0
+offset_left = -140.0
+offset_top = -20.0
+offset_right = 140.0
+offset_bottom = 280.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 14
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(240, 48)
+custom_minimum_size = Vector2(280, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Начать"
+theme_override_font_sizes/font_size = 20
+text = "Начать игру"
+
+[node name="StoryMapButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Карта сюжета"
+
+[node name="NinpediaButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Нарутопедия"
+
+[node name="CardsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(280, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Карточки шиноби"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(240, 48)
+custom_minimum_size = Vector2(280, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "Выход"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StoryMapButton" to="." method="_on_story_map_pressed"]
+[connection signal="pressed" from="VBoxContainer/NinpediaButton" to="." method="_on_ninpedia_pressed"]
+[connection signal="pressed" from="VBoxContainer/CardsButton" to="." method="_on_cards_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
