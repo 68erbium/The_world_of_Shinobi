@@ -1,0 +1,115 @@
+[gd_scene load_steps=2 format=3 uid="uid://bninpedia001"]
+
+[ext_resource type="Script" path="res://scripts/ninpedia.gd" id="1_script"]
+
+[node name="Ninpedia" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.09, 0.12, 1)
+
+[node name="TopBar" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+color = Color(0.12, 0.14, 0.18, 1)
+
+[node name="Title" type="Label" parent="TopBar"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 400.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.95, 0.75, 0.2, 1)
+theme_override_font_sizes/font_size = 24
+text = "Нарутопедия"
+
+[node name="NavButtons" type="HBoxContainer" parent="TopBar"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 10.0
+offset_right = 1000.0
+offset_bottom = 46.0
+theme_override_constants/separation = 12
+
+[node name="StoryMapBtn" type="Button" parent="TopBar/NavButtons"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Карта сюжета"
+
+[node name="CardsBtn" type="Button" parent="TopBar/NavButtons"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Карточки"
+
+[node name="BackBtn" type="Button" parent="TopBar/NavButtons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Меню"
+
+[node name="LeftPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 80.0
+offset_right = 320.0
+offset_bottom = 720.0
+
+[node name="Categories" type="VBoxContainer" parent="LeftPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CatTitle" type="Label" parent="LeftPanel/Categories"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Категории"
+
+[node name="CatCharacters" type="Button" parent="LeftPanel/Categories"]
+layout_mode = 2
+text = "Персонажи"
+
+[node name="CatVillages" type="Button" parent="LeftPanel/Categories"]
+layout_mode = 2
+text = "Деревни"
+
+[node name="CatTechniques" type="Button" parent="LeftPanel/Categories"]
+layout_mode = 2
+text = "Техники"
+
+[node name="CatClans" type="Button" parent="LeftPanel/Categories"]
+layout_mode = 2
+text = "Кланы"
+
+[node name="CatHistory" type="Button" parent="LeftPanel/Categories"]
+layout_mode = 2
+text = "История"
+
+[node name="ContentPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 80.0
+offset_right = 994.0
+offset_bottom = 720.0
+
+[node name="Content" type="RichTextLabel" parent="ContentPanel"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 17
+bbcode_enabled = true
+text = "[b]Нарутопедия[/b]\n\nЭнциклопедия мира шиноби.\n\nЗдесь будут статьи о персонажах, деревнях, техниках, кланах и истории.\n\nПока это заготовка. Выбери категорию слева (кнопки пока ничего не делают — контент добавим позже).\n\nВ будущем статьи будут открываться по ходу сюжета."
+
+[connection signal="pressed" from="TopBar/NavButtons/StoryMapBtn" to="." method="_on_story_map_pressed"]
+[connection signal="pressed" from="TopBar/NavButtons/CardsBtn" to="." method="_on_cards_pressed"]
+[connection signal="pressed" from="TopBar/NavButtons/BackBtn" to="." method="_on_back_pressed"]
