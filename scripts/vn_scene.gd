@@ -1,7 +1,7 @@
 extends Control
 
 # --- Simple dialogue system for MVP ---
-# Each entry: speaker, text, left_char, right_char, choices (optional array of {text, next_id})
+# Each entry: speaker, text, left_char, right_char, background, choices (optional array of {text, next_id})
 
 var dialogue := [
 	{
@@ -9,6 +9,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Академия ниндзя. Утро. Сегодня выпускной день.",
 		"left": "", "right": "",
+		"background": "courtyard",
 		"next": 1
 	},
 	{
@@ -16,6 +17,7 @@ var dialogue := [
 		"speaker": "Sensei",
 		"text": "Эй, новичок. Подойди-ка сюда.",
 		"left": "Sensei", "right": "",
+		"background": "courtyard",
 		"next": 2
 	},
 	{
@@ -23,6 +25,7 @@ var dialogue := [
 		"speaker": "Sensei",
 		"text": "Ты прошёл академию. Теперь ты генин. Но путь шиноби только начинается.",
 		"left": "Sensei", "right": "",
+		"background": "courtyard",
 		"next": 3
 	},
 	{
@@ -30,6 +33,7 @@ var dialogue := [
 		"speaker": "Sensei",
 		"text": "Что будешь делать первым делом?",
 		"left": "Sensei", "right": "",
+		"background": "courtyard",
 		"choices": [
 			{"text": "Взять миссию D-ранга", "next": 4},
 			{"text": "Потренироваться ещё", "next": 7},
@@ -42,6 +46,7 @@ var dialogue := [
 		"speaker": "Sensei",
 		"text": "Хорошо. Есть простая задача — помочь старику с огородом. Не геройствуй.",
 		"left": "Sensei", "right": "",
+		"background": "gate",
 		"next": 5
 	},
 	{
@@ -49,6 +54,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Ты отправляешься на миссию. Пока всё спокойно...",
 		"left": "", "right": "",
+		"background": "gate",
 		"next": 6
 	},
 	{
@@ -56,6 +62,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Конец пролога.\n\n(Миссия D-ранга пройдена. Позже здесь будет настоящий сюжет.)",
 		"left": "", "right": "",
+		"background": "gate",
 		"next": -1
 	},
 	# Path B — Training
@@ -64,6 +71,7 @@ var dialogue := [
 		"speaker": "Sensei",
 		"text": "Умный выбор. Сила без практики — ничто.",
 		"left": "Sensei", "right": "",
+		"background": "terrace",
 		"next": 8
 	},
 	{
@@ -71,6 +79,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Ты проводишь день на тренировочном поле. Пот, боль, прогресс.",
 		"left": "", "right": "",
+		"background": "terrace",
 		"next": 9
 	},
 	{
@@ -78,6 +87,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Конец пролога.\n\n(Ты стал чуть сильнее. Позже здесь будет настоящий сюжет.)",
 		"left": "", "right": "",
+		"background": "terrace",
 		"next": -1
 	},
 	# Path C — Walk
@@ -86,6 +96,7 @@ var dialogue := [
 		"speaker": "Sensei",
 		"text": "Хм... Ладно. Но не забывай, что мир шиноби не прощает беспечности.",
 		"left": "Sensei", "right": "",
+		"background": "gate",
 		"next": 11
 	},
 	{
@@ -93,6 +104,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Ты бродишь по улицам. Видишь знакомые лица... и кое-кого подозрительного в тени.",
 		"left": "", "right": "",
+		"background": "gate",
 		"next": 12
 	},
 	{
@@ -100,6 +112,7 @@ var dialogue := [
 		"speaker": "Narrator",
 		"text": "Конец пролога.\n\n(Ты заметил что-то важное. Позже здесь будет настоящий сюжет.)",
 		"left": "", "right": "",
+		"background": "gate",
 		"next": -1
 	},
 ]
@@ -111,8 +124,9 @@ var dialogue_map: Dictionary = {}
 @onready var text_label: RichTextLabel = $DialogueBox/TextLabel
 @onready var choices_container: VBoxContainer = $DialogueBox/ChoicesContainer
 @onready var continue_hint: Label = $DialogueBox/ContinueHint
-@onready var left_char: ColorRect = $Characters/LeftChar
-@onready var right_char: ColorRect = $Characters/RightChar
+@onready var background: TextureRect = $Background
+@onready var left_char: TextureRect = $Characters/LeftChar
+@onready var right_char: TextureRect = $Characters/RightChar
 @onready var left_label: Label = $Characters/LeftChar/Label
 @onready var right_label: Label = $Characters/RightChar/Label
 
@@ -160,6 +174,7 @@ func _show_entry(id: int) -> void:
 	# Speaker & text
 	name_label.text = entry.speaker
 	text_label.text = entry.text
+	_update_background(entry.get("background", "courtyard"))
 
 	# Characters (simple colored dummies)
 	_update_character(left_char, left_label, entry.get("left", ""))
@@ -179,7 +194,22 @@ func _show_entry(id: int) -> void:
 		continue_hint.text = "[Пробел / ЛКМ — далее]" if entry.get("next", -1) != -1 else "[Конец пролога]"
 
 
-func _update_character(rect: ColorRect, label: Label, name: String) -> void:
+func _update_background(background_name: String) -> void:
+	var textures := {
+		"courtyard": preload("res://assets/backgrounds/academy_morning_courtyard.svg"),
+		"gate": preload("res://assets/backgrounds/academy_morning_gate.svg"),
+		"terrace": preload("res://assets/backgrounds/academy_morning_terrace.svg"),
+	}
+	var next_texture: Texture2D = textures.get(background_name, textures.courtyard)
+	if background.texture == next_texture:
+		return
+	var tween := create_tween()
+	tween.tween_property(background, "modulate", Color(1, 1, 1, 0), 0.1)
+	tween.tween_callback(func() -> void: background.texture = next_texture)
+	tween.tween_property(background, "modulate", Color.WHITE, 0.2)
+
+
+func _update_character(rect: TextureRect, label: Label, name: String) -> void:
 	if name == "" or name == null:
 		rect.visible = false
 		return
@@ -187,11 +217,11 @@ func _update_character(rect: ColorRect, label: Label, name: String) -> void:
 	label.text = name
 	match name:
 		"Sensei":
-			rect.color = Color(0.2, 0.35, 0.7)  # blue-ish
+			rect.texture = preload("res://assets/characters/ujito_sensei.svg")
 		"Player":
-			rect.color = Color(0.7, 0.25, 0.3)  # red-ish
+			rect.texture = null
 		_:
-			rect.color = Color(0.4, 0.4, 0.45)  # gray dummy
+			rect.texture = null
 
 
 func _on_choice_selected(next_id: int) -> void:

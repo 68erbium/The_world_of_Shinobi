@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#8bc9e4"/>
+      <stop offset="1" stop-color="#dff0d0"/>
+    </linearGradient>
+    <linearGradient id="wood" x2="0" y2="1">
+      <stop stop-color="#9b684d"/>
+      <stop offset="1" stop-color="#4b3540"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="768" fill="url(#sky)"/>
+  <circle cx="760" cy="125" r="58" fill="#fff2b2" opacity=".85"/>
+  <path d="M0 430L180 300 330 430 500 260 690 430 840 300 1024 425V520H0Z" fill="#73999a" opacity=".72"/>
+  <path d="M0 480Q230 420 470 475T1024 460V768H0Z" fill="#5c896c"/>
+  <g fill="#2b524a">
+    <path d="M35 570L105 320 175 570Z"/><path d="M850 580L920 300 990 580Z"/>
+  </g>
+  <rect y="500" width="1024" height="268" fill="url(#wood)"/>
+  <path d="M0 545H1024M0 610H1024M0 675H1024M0 740H1024" stroke="#3a2936" stroke-width="8" opacity=".75"/>
+  <path d="M95 500V768M235 500V768M375 500V768M515 500V768M655 500V768M795 500V768M935 500V768" stroke="#3a2936" stroke-width="7" opacity=".55"/>
+  <g stroke="#332b36" stroke-width="9">
+    <path d="M85 520V205M85 235H360M360 205V520"/>
+    <path d="M115 260V500M330 260V500"/>
+  </g>
+  <path d="M50 220L222 110 395 220Z" fill="#29394b" stroke="#332b36" stroke-width="9"/>
+  <path d="M50 220H395" stroke="#b44f46" stroke-width="15"/>
+  <g fill="#b9d7d0" stroke="#332b36" stroke-width="7">
+    <rect x="135" y="290" width="75" height="85"/><rect x="245" y="290" width="75" height="85"/>
+  </g>
+  <g fill="#e4c58c" stroke="#332b36" stroke-width="7">
+    <rect x="160" y="400" width="125" height="100"/>
+  </g>
+  <path d="M500 500V250M500 275H760M760 250V500" stroke="#332b36" stroke-width="9"/>
+  <path d="M470 265L630 160 790 265Z" fill="#29394b" stroke="#332b36" stroke-width="9"/>
+  <path d="M470 265H790" stroke="#b44f46" stroke-width="15"/>
+  <path d="M550 330H710V500H550Z" fill="#b9d7d0" stroke="#332b36" stroke-width="7"/>
+  <g fill="#fff0c2" opacity=".7">
+    <circle cx="270" cy="125" r="5"/><circle cx="430" cy="155" r="4"/><circle cx="890" cy="185" r="5"/>
+  </g>
+</svg>

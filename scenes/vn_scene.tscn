@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvnscene001"]
+[gd_scene load_steps=6 format=3 uid="uid://bvnscene001"]
 
 [ext_resource type="Script" path="res://scripts/vn_scene.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/academy_morning_courtyard.svg" id="2_courtyard"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/academy_morning_gate.svg" id="3_gate"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/academy_morning_terrace.svg" id="4_terrace"]
+[ext_resource type="Texture2D" path="res://assets/characters/ujito_sensei.svg" id="5_ujito"]
 
 [node name="VNScene" type="Control"]
 layout_mode = 3
@@ -11,14 +15,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15, 0.18, 0.22, 1)
+mouse_filter = 2
+texture = ExtResource("2_courtyard")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Characters" type="Control" parent="."]
 layout_mode = 1
@@ -29,14 +36,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="LeftChar" type="ColorRect" parent="Characters"]
+[node name="LeftChar" type="TextureRect" parent="Characters"]
 visible = false
 layout_mode = 0
-offset_left = 40.0
-offset_top = 80.0
-offset_right = 240.0
-offset_bottom = 480.0
-color = Color(0.2, 0.35, 0.7, 1)
+offset_left = 25.0
+offset_top = 85.0
+offset_right = 330.0
+offset_bottom = 560.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+texture = ExtResource("5_ujito")
 
 [node name="Label" type="Label" parent="Characters/LeftChar"]
 layout_mode = 1
@@ -56,14 +66,16 @@ theme_override_font_sizes/font_size = 18
 text = "Sensei"
 horizontal_alignment = 1
 
-[node name="RightChar" type="ColorRect" parent="Characters"]
+[node name="RightChar" type="TextureRect" parent="Characters"]
 visible = false
 layout_mode = 0
-offset_left = 784.0
-offset_top = 80.0
-offset_right = 984.0
-offset_bottom = 480.0
-color = Color(0.7, 0.25, 0.3, 1)
+offset_left = 694.0
+offset_top = 85.0
+offset_right = 999.0
+offset_bottom = 560.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="Characters/RightChar"]
 layout_mode = 1
@@ -84,6 +96,7 @@ text = "???"
 horizontal_alignment = 1
 
 [node name="DialogueBox" type="PanelContainer" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0

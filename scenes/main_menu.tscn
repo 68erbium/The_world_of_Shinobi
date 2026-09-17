@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmainmenu001"]
+[gd_scene load_steps=9 format=3 uid="uid://bmainmenu001"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_background.png" id="2_background"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_logo.png" id="3_logo"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_button_start.png" id="4_start"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_button_story_map.png" id="5_story_map"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_button_ninpedia.png" id="6_ninpedia"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_button_cards.png" id="7_cards"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu_button_quit.png" id="8_quit"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,23 +25,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.08, 0.09, 0.14, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.03, 0.08, 0.28)
+
+[node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -300.0
+offset_left = -260.0
 offset_top = 80.0
-offset_right = 300.0
-offset_bottom = 150.0
+offset_right = 260.0
+offset_bottom = 220.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.95, 0.75, 0.2, 1)
-theme_override_font_sizes/font_size = 42
-text = "Путь Шиноби"
-horizontal_alignment = 1
-vertical_alignment = 1
+mouse_filter = 2
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Subtitle" type="Label" parent="."]
 layout_mode = 1
@@ -46,6 +75,7 @@ offset_top = 150.0
 offset_right = 200.0
 offset_bottom = 185.0
 grow_horizontal = 2
+visible = false
 theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
 theme_override_font_sizes/font_size = 18
 text = "Визуальная новелла"
@@ -58,43 +88,63 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -20.0
-offset_right = 140.0
-offset_bottom = 280.0
+offset_left = -240.0
+offset_top = -5.0
+offset_right = 240.0
+offset_bottom = 365.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 14
+theme_override_constants/separation = 4
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(280, 48)
+[node name="StartButton" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(480, 68)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Начать игру"
+focus_mode = 2
+mouse_default_cursor_shape = 2
+pivot_offset = Vector2(240, 34)
+texture_normal = ExtResource("4_start")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="StoryMapButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(280, 48)
+[node name="StoryMapButton" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(480, 68)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Карта сюжета"
+focus_mode = 2
+mouse_default_cursor_shape = 2
+pivot_offset = Vector2(240, 34)
+texture_normal = ExtResource("5_story_map")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="NinpediaButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(280, 48)
+[node name="NinpediaButton" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(480, 68)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Нарутопедия"
+focus_mode = 2
+mouse_default_cursor_shape = 2
+pivot_offset = Vector2(240, 34)
+texture_normal = ExtResource("6_ninpedia")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="CardsButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(280, 48)
+[node name="CardsButton" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(480, 68)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Карточки шиноби"
+focus_mode = 2
+mouse_default_cursor_shape = 2
+pivot_offset = Vector2(240, 34)
+texture_normal = ExtResource("7_cards")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(280, 48)
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(480, 68)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Выход"
+focus_mode = 2
+mouse_default_cursor_shape = 2
+pivot_offset = Vector2(240, 34)
+texture_normal = ExtResource("8_quit")
+ignore_texture_size = true
+stretch_mode = 5
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StoryMapButton" to="." method="_on_story_map_pressed"]

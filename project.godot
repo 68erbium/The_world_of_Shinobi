@@ -20,10 +20,4 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
-window/size/mode=0
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
-
-[rendering]
-
-renderer/rendering_method="forward_plus"
